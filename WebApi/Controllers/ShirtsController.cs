@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -20,7 +21,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public string PostShirt()
+        public string PostShirt([FromBody]Shirt shirt)
         {
             return "Created a shirt";
         }

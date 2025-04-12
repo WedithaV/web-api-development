@@ -1,7 +1,11 @@
-﻿namespace WebApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+using WebApi.Models.Validations;
+
+namespace WebApi.Models
 {
     public class Shirt
     {
+        [Required]
         public int ShirtId { get; set; }
 
         [Required]
@@ -10,6 +14,7 @@
         [Required]
         public string? Color { get; set; }
 
+        [Shirt_CorrectSizing]
         public int? Size { get; set; }
 
         [Required]

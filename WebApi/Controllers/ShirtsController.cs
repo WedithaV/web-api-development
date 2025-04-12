@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
+using WebApi.Models.Repositories;
 
 namespace WebApi.Controllers
 {
@@ -9,17 +10,11 @@ namespace WebApi.Controllers
 
     public class ShirtsController : ControllerBase
     {
-        private List<Shirt> shirts = new List<Shirt>() {
-            new Shirt {ShirtId = 1, Brand = "My Brand", Color = "black",Gender = "Men",Prize = 34.23, Size = 9},
-            new Shirt {ShirtId = 2, Brand = "My Brand", Color = "black",Gender = "Men",Prize = 34.23, Size = 9},
-            new Shirt {ShirtId = 3, Brand = "My Brand", Color = "black",Gender = "Men",Prize = 34.23, Size = 9},
-            new Shirt {ShirtId = 4, Brand = "My Brand", Color = "black",Gender = "Men",Prize = 34.23, Size = 9},
-        };
-
+        
         [HttpGet]
-        public string GetShirts()
+        public IActionResult GetShirts()
         {
-            return "Read all shirts";
+            return Ok("Reading all the shirts");
         }
 
         [HttpGet("{id}")]
@@ -30,7 +25,7 @@ namespace WebApi.Controllers
                 return BadRequest();
             }
 
-            var shirt = shirts.FirstOrDefault(x => x.ShirtId == id);
+            var shirt = ShirtRepository.GetShirtById(id);
             if(shirt == null)
             {
                 return NotFound();
@@ -39,21 +34,21 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public string PostShirt([FromBody]Shirt shirt)
+        public IActionResult PostShirt([FromBody]Shirt shirt)
         {
-            return "Created a shirt";
+            return Ok("Created a shirt");
         }
 
 
         [HttpDelete("{id}")]
-        public string DeleteShirt(int id)
+        public IActionResult DeleteShirt(int id)
         {
-            return $"Deleted shirt {id}";
+            return Ok($"Delete the shirt id : {id}");
         }
 
         [HttpPut("{id}")]
-        public string PutShirt(int id) {
-            return $"Updated shirt {id}";
+        public IActionResult PutShirt(int id) {
+            return Ok($"Updated shirt {id}");
         }
     }
 }

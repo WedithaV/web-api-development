@@ -10,6 +10,11 @@ namespace WebApi.Models.Repositories
             new Shirt {ShirtId = 4, Brand = "My Brand", Color = "black",Gender = "Men",Prize = 34.23, Size = 9},
         };
 
+        public static List<Shirt> GetShirts()
+        {
+            return shirts;
+        }
+
         public static bool ShirtExists(int id)
         {
             return shirts.Any(x => x.ShirtId == id);

@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Filters\NewFolder1\" />
+    <Folder Include="Filters\NewFolder2\" />
+    <Folder Include="Filters\NewFolder\" />
+  </ItemGroup>
+
 </Project>

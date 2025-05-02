@@ -4,7 +4,7 @@ using WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.Design;
 
-namespace WebApi.Filters
+namespace WebApi.Filters.ActionFilters
 {
     public class Shirt_ValidateCreateShirtFilterAttribute : ActionFilterAttribute
     {

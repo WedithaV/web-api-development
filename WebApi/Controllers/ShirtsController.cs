@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
 using WebApi.Models.Repositories;
 using WebApi.Filters;
+using WebApi.Filters.ActionFilters;
+using WebApi.Filters.ExceptionFilters;
 
 namespace WebApi.Controllers
 {
@@ -46,22 +48,11 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         [Shirt_ValidateShirtIdFilter]
         [Shirt_ValidateUpdateShirtFilter]
+        [Shirt_UpdateExceptionFilter]
         public IActionResult PutShirt(int id, Shirt shirt) {
 
-            try
-            {
                 ShirtRepository.UpdateShirt(shirt);
-            }
-            catch
-            {
-                if (!ShirtRepository.ShirtExists(id))
-                {
-                    return NotFound();
-                }
-            }
-
             
-
             return NoContent();
         }
     }

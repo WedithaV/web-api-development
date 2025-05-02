@@ -44,8 +44,25 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutShirt(int id) {
-            return Ok($"Updated shirt {id}");
+        [Shirt_ValidateShirtIdFilter]
+        [Shirt_ValidateUpdateShirtFilter]
+        public IActionResult PutShirt(int id, Shirt shirt) {
+
+            try
+            {
+                ShirtRepository.UpdateShirt(shirt);
+            }
+            catch
+            {
+                if (!ShirtRepository.ShirtExists(id))
+                {
+                    return NotFound();
+                }
+            }
+
+            
+
+            return NoContent();
         }
     }
 }
